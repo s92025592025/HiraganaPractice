@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 class Main{
 	static final String ROME[]={"a", "i", "u", "e", "o", 
 								"ka", "ki", "ku", "ke", "ko",
@@ -12,19 +14,22 @@ class Main{
 									"な", "に", "ぬ", "ね", "の",
 									"は", "ひ", "ふ", "へ", "ほ"};
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
+		PrintStream ps=new PrintStream(System.out, true, "Shift-JIS");
+		System.setOut(ps);
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Choose game mode: 1 for Hiragana test and 2 for the romenized test!!");
 		int mode=sc.nextInt();
 		if(mode==1){
-			HiraganaGame();
+			HiraganaGame(ps);
 		}else if(mode==2){
 			RomeGame();
 		}
 	}
 
-	public static void HiraganaGame(){
+	public static void HiraganaGame(PrintStream ps) throws Exception{
 		Scanner sc=new Scanner(System.in);
+		System.setOut(ps);
 		for(int i=1;; i++){
 			int rand=(int)Math.round(Math.random()*25);
 			System.out.println("The "+i+"th problem: "+ROME[rand]);
@@ -38,7 +43,7 @@ class Main{
 		}
 	}
 
-	public static void RomeGame(){
+	public static void RomeGame() throws Exception{
 		Scanner sc=new Scanner(System.in);
 		for(int i=1;; i++){
 			int rand=(int)Math.round(Math.random()*25);
