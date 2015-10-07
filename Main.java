@@ -6,6 +6,7 @@ class Main{
 								"ka", "ki", "ku", "ke", "ko",
 								"sa", "shi", "su", "se", "so",
 								"ta", "chi", "tsu", "te", "to",
+								"na", "ni", "nu", "ne", "no",
 								"ha", "hi", "fu", "he", "ho"};
 	static final String HIRIGANA[]={"あ", "い", "う", "え", "お",
 									"か", "き", "く", "け", "こ",
@@ -46,7 +47,7 @@ class Main{
 	public static void RomeGame() throws Exception{
 		Scanner sc=new Scanner(System.in);
 		for(int i=1;; i++){
-			int rand=(int)Math.round(Math.random()*24);
+			int rand=(int)Math.round(Math.random()*29);
 			System.out.println("The "+i+"th problem: "+HIRIGANA[rand]);
 			System.out.println("Enter any number to see answer, 0 to exit");
 			if(sc.nextInt()==0){
