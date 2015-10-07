@@ -16,21 +16,28 @@ class Main{
 									"は", "ひ", "ふ", "へ", "ほ"};
 
 	public static void main(String[] args) throws Exception{
-		PrintStream ps=new PrintStream(System.out, true, "Shift-JIS");
-		System.setOut(ps);
 		Scanner sc=new Scanner(System.in);
-		System.out.println("Choose game mode: 1 for Hiragana test and 2 for the romenized test!!");
-		int mode=sc.nextInt();
-		if(mode==1){
-			HiraganaGame(ps);
-		}else if(mode==2){
-			RomeGame();
+		while(true){
+			System.out.println("Choose game mode: 1 for Hiragana test, 2 for the romenized test, 3 for Harigana combining test, 4 for romenized combining test!!");
+			int mode=sc.nextInt();
+			if(mode==0){break;}
+			switch(mode){
+				case 1:
+					HiraganaGame(); break;
+				case 2:
+					RomeGame(); break;
+				case 3:
+					HiraganaCombine(); break;
+				case 4:
+					RomeCombine(); break;
+			}
 		}
+		
 	}
 
-	public static void HiraganaGame(PrintStream ps) throws Exception{
+	public static void HiraganaGame() throws Exception{
 		Scanner sc=new Scanner(System.in);
-		System.setOut(ps);
+		//System.setOut(ps);
 		for(int i=1;; i++){
 			int rand=(int)Math.round(Math.random()*29);
 			System.out.println("The "+i+"th problem: "+ROME[rand]);
@@ -38,7 +45,7 @@ class Main{
 			if(sc.nextInt()==0){
 				break;
 			}else{
-				System.out.println("The Hiragana is: "+HIRIGANA[rand]+"\nEnter any number to proceed and 0 to exit.");
+				System.out.println("The Hiragana is: "+HIRIGANA[rand]+"\nEnter any number to proceed and 0 to exit this mode.");
 				if(sc.nextInt()==0){break;}
 			}
 		}
@@ -53,9 +60,62 @@ class Main{
 			if(sc.nextInt()==0){
 				break;
 			}else{
-				System.out.println("The Hiragana is: "+ROME[rand]+"\nEnter any number to proceed and 0 to exit.");
+				System.out.println("The Hiragana is: "+ROME[rand]+"\nEnter any number to proceed and 0 to exit this mode.");
 				if(sc.nextInt()==0){break;}
 			}
 		}
+	}
+
+	public static void HiraganaCombine(){
+		Scanner sc=new Scanner(System.in);
+		int wordlength;
+		for(int i=0; ; i++){
+			wordlength=(int)Math.round(Math.random()*3)+1;
+			int words[]=randomWordsPosition(wordlength);
+			System.out.println("The "+i+"th problem: "+longerWords(words, HIRIGANA));
+			System.out.println("Enter any number to see answer, 0 to exit");
+			if(sc.nextInt()==0){
+				break;
+			}else{
+				System.out.println("The Hiragana is: "+longerWords(words, ROME)+"\nEnter any number to proceed and 0 to exit this mode.");
+				if(sc.nextInt()==0){break;}
+			}
+		}
+	}
+
+	public static void RomeCombine(){
+		Scanner sc=new Scanner(System.in);
+		int wordlength;
+		for(int i=0; ; i++){
+			wordlength=(int)Math.round(Math.random()*3)+1;
+			int words[]=randomWordsPosition(wordlength);
+			System.out.println("The "+i+"th problem: "+longerWords(words, ROME));
+			System.out.println("Enter any number to see answer, 0 to exit");
+			if(sc.nextInt()==0){
+				break;
+			}else{
+				System.out.println("The Hiragana is: "+longerWords(words, HIRIGANA)+"\nEnter any number to proceed and 0 to exit this mode.");
+				if(sc.nextInt()==0){break;}
+			}
+		}
+		
+	}
+
+	public static int[] randomWordsPosition(int length){
+		int words[]=new int[length];
+		for(int i=0; i<length; i++){
+			words[i]=(int)Math.round(Math.random()*29);
+		}
+
+		return words;
+	}
+
+	public static StringBuilder longerWords(int[] words, String[] J){
+		StringBuilder sb=new StringBuilder();
+		for(int i=0; i<words.length; i++){
+			sb.append(J[words[i]]+"");
+		}
+
+		return sb;
 	}
 }
