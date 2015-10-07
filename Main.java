@@ -46,7 +46,7 @@ class Main{
 	public static void RomeGame() throws Exception{
 		Scanner sc=new Scanner(System.in);
 		for(int i=1;; i++){
-			int rand=(int)Math.round(Math.random()*25);
+			int rand=(int)Math.round(Math.random()*24);
 			System.out.println("The "+i+"th problem: "+HIRIGANA[rand]);
 			System.out.println("Enter any number to see answer, 0 to exit");
 			if(sc.nextInt()==0){
