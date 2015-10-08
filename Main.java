@@ -7,13 +7,23 @@ class Main{
 								"sa", "shi", "su", "se", "so",
 								"ta", "chi", "tsu", "te", "to",
 								"na", "ni", "nu", "ne", "no",
-								"ha", "hi", "fu", "he", "ho"};
+								"ha", "hi", "fu", "he", "ho",
+								"ma", "mi", "mu", "me", "mo",
+								"ya",       "yu",       "yo",
+								"ra", "ri", "ru", "re", "ro",
+								"wa",                   "wo",
+								"N"};
 	static final String HIRIGANA[]={"あ", "い", "う", "え", "お",
 									"か", "き", "く", "け", "こ",
 									"さ", "し", "す", "せ", "そ",
 									"た", "ち", "つ", "て", "と",
 									"な", "に", "ぬ", "ね", "の",
-									"は", "ひ", "ふ", "へ", "ほ"};
+									"は", "ひ", "ふ", "へ", "ほ",
+									"ま", "み", "む", "め", "も",
+									"や",      "ゆ",       "よ",
+									"ら", "り", "る", "れ", "ろ",
+									"わ",                 "を",
+									"ん"};
 
 	public static void main(String[] args) throws Exception{
 		Scanner sc=new Scanner(System.in);
@@ -39,7 +49,7 @@ class Main{
 		Scanner sc=new Scanner(System.in);
 		//System.setOut(ps);
 		for(int i=1;; i++){
-			int rand=(int)Math.round(Math.random()*29);
+			int rand=(int)Math.round(Math.random()*(HIRIGANA.length-1));
 			System.out.println("The "+i+"th problem: "+ROME[rand]);
 			System.out.println("Enter any number to see answer, 0 to exit");
 			if(sc.nextInt()==0){
@@ -54,7 +64,7 @@ class Main{
 	public static void RomeGame() throws Exception{
 		Scanner sc=new Scanner(System.in);
 		for(int i=1;; i++){
-			int rand=(int)Math.round(Math.random()*29);
+			int rand=(int)Math.round(Math.random()*(HIRIGANA.length-1));
 			System.out.println("The "+i+"th problem: "+HIRIGANA[rand]);
 			System.out.println("Enter any number to see answer, 0 to exit");
 			if(sc.nextInt()==0){
@@ -104,7 +114,7 @@ class Main{
 	public static int[] randomWordsPosition(int length){
 		int words[]=new int[length];
 		for(int i=0; i<length; i++){
-			words[i]=(int)Math.round(Math.random()*29);
+			words[i]=(int)Math.round(Math.random()*(HIRIGANA.length-1));
 		}
 
 		return words;
