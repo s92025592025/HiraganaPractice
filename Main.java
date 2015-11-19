@@ -2,43 +2,62 @@ import java.util.Scanner;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 class Main{
-	static final String ROME[]={"a", "i", "u", "e", "o", 
-								"ka", "ki", "ku", "ke", "ko",
-								"ga", "gi", "gu", "ge", "go",
-								"sa", "shi", "su", "se", "so",
-								"za", "ji", "zu", "ze", "zo",
-								"ta", "chi", "tsu", "te", "to",
-								"da", "ji", "zu", "de", "do",
-								"na", "ni", "nu", "ne", "no",
-								"ha", "hi", "fu", "he", "ho",
-								"ba", "bi", "bu", "be", "bo",
-								"pa", "pi", "pu", "pe", "po",
-								"ma", "mi", "mu", "me", "mo",
-								"ya",       "yu",       "yo",
-								"ra", "ri", "ru", "re", "ro",
-								"wa",                   "wo",
-								"N"};
-	static final String HIRIGANA[]={"あ", "い", "う", "え", "お",
-									"か", "き", "く", "け", "こ",
-									"が", "ぎ", "ぐ", "げ", "ご",
-									"さ", "し", "す", "せ", "そ",
-									"ざ", "じ or ぢ", "ず　or　づ", "ぜ", "ぞ",
-									"た", "ち", "つ", "て", "と",
-									"あ", "ぢ or じ", "づ　or　ず", "で", "ど",
-									"な", "に", "ぬ", "ね", "の",
-									"は", "ひ", "ふ", "へ", "ほ",
-									"ば", "び", "ぶ", "べ", "ぼ",
-									"ぱ", "ぴ", "ぷ", "ぺ", "ぽ",
-									"ま", "み", "む", "め", "も",
-									"や",      "ゆ",       "よ",
-									"ら", "り", "る", "れ", "ろ",
-									"わ",                 "を",
-									"ん"};
+	static final String ROME[] = {"a", "i", "u", "e", "o", 
+									"ka", "ki", "ku", "ke", "ko",
+									"ga", "gi", "gu", "ge", "go",
+									"sa", "shi", "su", "se", "so",
+									"za", "ji", "zu", "ze", "zo",
+									"ta", "chi", "tsu", "te", "to",
+									"da", "ji", "zu", "de", "do",
+									"na", "ni", "nu", "ne", "no",
+									"ha", "hi", "fu", "he", "ho",
+									"ba", "bi", "bu", "be", "bo",
+									"pa", "pi", "pu", "pe", "po",
+									"ma", "mi", "mu", "me", "mo",
+									"ya",       "yu",       "yo",
+									"ra", "ri", "ru", "re", "ro",
+									"wa",                   "wo",
+									"N"};
+	static final String HIRIGANA[] = {"あ", "い", "う", "え", "お",
+										"か", "き", "く", "け", "こ",
+										"が", "ぎ", "ぐ", "げ", "ご",
+										"さ", "し", "す", "せ", "そ",
+										"ざ", "じ or ぢ", "ず　or　づ", "ぜ", "ぞ",
+										"た", "ち", "つ", "て", "と",
+										"あ", "ぢ or じ", "づ　or　ず", "で", "ど",
+										"な", "に", "ぬ", "ね", "の",
+										"は", "ひ", "ふ", "へ", "ほ",
+										"ば", "び", "ぶ", "べ", "ぼ",
+										"ぱ", "ぴ", "ぷ", "ぺ", "ぽ",
+										"ま", "み", "む", "め", "も",
+										"や",      "ゆ",       "よ",
+										"ら", "り", "る", "れ", "ろ",
+										"わ",                 "を",
+										"ん"};
+
+	static final String KATAGANA[] = {"ア", "イ", "ウ", "エ", "オ",
+										"カ", "キ", "ク", "ケ", "コ",
+										"ガ", "ギ", "グ", "ゲ", "ゴ",
+										"サ", "シ", "ス", "セ", "ソ",
+										"ザ", "ジ", "ズ", "ゼ", "ゾ",
+										"タ", "チ", "ツ", "テ", "ト", 
+										"ダ", "ヂ", "ヅ", "デ", "ド",
+										"ナ", "ニ", "ヌ", "ネ", "ノ",
+										"ハ", "ヒ", "フ", "ヘ", "ホ",
+										"バ", "ビ", "ブ", "ベ", "ボ",
+										"パ", "ピ", "プ", "ペ", "ポ",
+										"マ", "ミ", "ム", "メ", "モ",
+										"ヤ",      "ユ",      "ヨ", 
+										"ラ", "リ", "ル", "レ", "ロ",
+										"ワ",                 "ヲ",
+										"ン"};
 
 	public static void main(String[] args) throws Exception{
 		Scanner sc=new Scanner(System.in);
+		
 		while(true){
-			System.out.println("Choose game mode: 1 for Hiragana test, 2 for the romenized test, 3 for Harigana combining test, 4 for romenized combining test!!");
+			System.out.println("Choose game mode: 1 for Hiragana test, 2 for the romenized test, 3 for Harigana combining test, 4 for romenized combining test");
+			System.out.println("				  5 for Katagana test");
 			int mode=sc.nextInt();
 			if(mode==0){break;}
 			switch(mode){
@@ -50,6 +69,8 @@ class Main{
 					HiraganaCombine(); break;
 				case 4:
 					RomeCombine(); break;
+				case 5:
+					kataganaTest(); break;
 			}
 		}
 		
@@ -57,7 +78,6 @@ class Main{
 
 	public static void HiraganaGame() throws Exception{
 		Scanner sc=new Scanner(System.in);
-		//System.setOut(ps);
 		for(int i=1;; i++){
 			int rand=(int)Math.round(Math.random()*(HIRIGANA.length-1));
 			System.out.println("The "+i+"th problem: "+ROME[rand]);
@@ -137,5 +157,20 @@ class Main{
 		}
 
 		return sb;
+	}
+
+	public static void kataganaTest(){
+		Scanner sc=new Scanner(System.in);
+		for(int i=1;; i++){
+			int rand=(int)Math.round(Math.random()*(KATAGANA.length-1));
+			System.out.println("The "+i+"th problem: "+ROME[rand]);
+			System.out.println("Enter any number to see answer, 0 to exit");
+			if(sc.nextInt()==0){
+				break;
+			}else{
+				System.out.println("The Katagana is: "+KATAGANA[rand]+"\nEnter any number to proceed and 0 to exit this mode.");
+				if(sc.nextInt()==0){break;}
+			}
+		}
 	}
 }
